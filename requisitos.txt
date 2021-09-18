@@ -1,0 +1,4 @@
+Necessário as seguintes bibliotecas:
+
+	> Reportlab
+		pip install reportlab
