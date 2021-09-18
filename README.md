@@ -8,5 +8,5 @@ Gera um PDF, logo depois de você responder um questionário simples, e envia pa
 <hr>
 <h2>Fotos ilustrativa</h2>
 <img src="./fotos/foto01.png">
-<img src="./fotos/foto02.png">
-<img src="./fotos/foto03.png">
+<img src="./fotos/foto02.jpeg">
+<img src="./fotos/foto03.jpeg">
