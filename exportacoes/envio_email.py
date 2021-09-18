@@ -1,6 +1,5 @@
 #Importando bibliotecas padrões do Python
 import smtplib
-import email.message
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -15,7 +14,7 @@ class enviar_email:
 
     # Construtor
     def __init__(self, email, senha, anexo, nomeAnexo):
-        # A partir da instanciação da nossa classe, você deve passar as informações de email e senha
+        # A partir da instanciação da nossa classe, você deve passar as informações de email e senha, caminho do anexo e o nome do anexo.
         self.email = email
         self.senha = senha
         self.anexo = anexo
@@ -24,7 +23,6 @@ class enviar_email:
     # O método que enviará, de fato, o nosso email (recebe 3 argumentos)
     def enviarEmail(self, assunto, mensagem, destinatario):
         # Estrutura do nosso e-mail.
-        #corpoEmail = mensagem
         corpo = mensagem
         msg = MIMEMultipart()
         msg['Subject'] = assunto
@@ -33,16 +31,19 @@ class enviar_email:
         password = self.senha
         msg.attach(MIMEText(corpo,'html'))
 
-        Anexo_fp = open(self.anexo)
-
+        # Abrindo o arquivo em modo leitura(r - read) e binário(b - binary)
+        Anexo_fp = open(self.anexo, 'rb')
+        # Codificando o anexo para o email
         Anexo = MIMEBase('application', 'octet-stream')
         Anexo.set_payload(Anexo_fp.read())
         encoders.encode_base64(Anexo)
 
-        #msg.add_header('Content-Type', 'text/html')
-        #msg.set_payload(corpoEmail)
+        # Cabeçalho no tipo anexo do email
         Anexo.add_header('Content-Disposition', f'attachment; filename={self.nomeAnexo}')
+        # Fechando o arquivo
         Anexo_fp.close()
+
+        # Coloca o anexo no corpo do email
         msg.attach(Anexo)
 
         # Se conectando ao servidor de Correio Eletrônico e enviando a mensagem

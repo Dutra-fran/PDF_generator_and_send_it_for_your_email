@@ -4,9 +4,11 @@ from exportacoes.pdf_criar import Pdf_criar
 from exportacoes import *
 import os
 
+# esse comando abaixo equivale ao "pwd > caminho.txt" no Linux
 os.system("chdir > caminho.txt")
 caminho = open("caminho.txt", 'r').read().splitlines()
 
+# Tela de entrada ao usuário
 print("""
         PDF Super Generator :v
 
@@ -23,6 +25,7 @@ destinatario = input("Email do destinatario: ")
 assunto = input("Assunto do e-mail: ")
 mensagem = input("Escreva uma breve mensagem: ")
 
+# Questionário com as informações que vão para o PDF
 print("--------------------\n")
 print("A seguir, serão feito perguntas que irão ser colocadas no arquivo PDF. Obs: o arquivo PDF será gerado no diretório 'PDFs_Exportados'")
 nome = input("Informe seu nome: ")
@@ -39,5 +42,5 @@ PDF.Criar(caminho[0], nome, escolaridade, desenvolvedor, trabalho, lingua)
 
 # Instanciando a classe enviar_email 
 Em = enviar_email(email, senha, PDF.getArquivoPDF(), PDF.getNomeArquivoPDF())
-# Enviando a mensagem
+# Enviando a mensagem/email
 Em.enviarEmail(assunto, assunto, destinatario)
